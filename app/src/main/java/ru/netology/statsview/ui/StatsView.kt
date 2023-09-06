@@ -10,6 +10,7 @@ import android.view.View
 import androidx.core.content.withStyledAttributes
 import ru.netology.statsview.R
 import ru.netology.statsview.utils.AndroidUtils
+import ru.netology.statsview.utils.AndroidUtils.convertToOneHundredPercent
 import kotlin.math.min
 import kotlin.random.Random
 
@@ -50,6 +51,7 @@ class StatsView @JvmOverloads constructor(
     private var radius = 0F
     private var center = PointF()
     private var oval = RectF()
+    private var fullCircleDegrees = 360F
 
 
     private var paint = Paint(
@@ -86,14 +88,23 @@ class StatsView @JvmOverloads constructor(
 
         var startAngle = -90F
         data.forEachIndexed { index, datum ->
-            val angle = datum * 360F
-            paint.color = colors.getOrElse(index){getRandomColor()}
-            canvas.drawArc(oval, startAngle, angle, false, paint)
-            startAngle += angle
-        }
+            if (data.isNotEmpty()) {
+                val angle =
+                    (datum / data.max().times(data.count())) * fullCircleDegrees
 
+                //val angle = datum * 360F
+                paint.color = colors.getOrElse(index) { getRandomColor() }
+                canvas.drawArc(oval, startAngle, angle, false, paint)
+                startAngle += angle
+            }
+        }
+        val percentText = if (data.isNotEmpty()) {
+            convertToOneHundredPercent(data)
+        } else null
         canvas.drawText(
-            "%.2f%%".format(data.sum() * 100),
+
+            //"%.2f%%".format(data.sum() * 100),
+            "%.2f%%".format(percentText),
             center.x,
             center.y + textPaint.textSize / 4,
             textPaint
