@@ -109,6 +109,10 @@ class StatsView @JvmOverloads constructor(
             center.y + textPaint.textSize / 4,
             textPaint
         )
+        if (percentText == 100F) {
+            paint.color = colors[0]
+            canvas.drawArc(oval, startAngle, 1F, false, paint)
+        }
 
 
     }
