@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="26dp"
+        tools:text="Animation status"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:freezesText="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <ru.netology.statsview.ui.StatsView
         android:id="@+id/stats"

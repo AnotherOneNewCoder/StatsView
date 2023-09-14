@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">StatsView</string>
+    <string name="onanimationstart">onAnimationStart</string>
+    <string name="onanimationend">onAnimationEnd</string>
+    <string name="onanimationrepeat">onAnimationRepeat</string>
 </resources>
